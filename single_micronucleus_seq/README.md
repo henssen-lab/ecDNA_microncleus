@@ -5,13 +5,12 @@
 ### /copynumber 
 ###### contains scripts for calling relative copynumber.
 ### /scripts
-#### mapping_pipeline.smk
-###### snakemake file for processing raw reads
-#### runanalysis_processing.R
-###### Rscript processing per bin coverage data
-#### runanalysis_plotting.R
-###### Rscript containing analysis and plotting for all figures
+###### mapping_pipeline.smk: snakemake file for processing raw reads
+###### runanalysis_processing.R: Rscript for processing per bin coverage data
+###### runanalysis_plotting.R: Rscript containing analysis and plotting for all figures
 
+### /output
+###### contains all raw plots for all figures
 
 
 
