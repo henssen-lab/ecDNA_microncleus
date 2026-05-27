@@ -15,6 +15,7 @@
 
 
 ###### This code has been tested on aarch64-apple-darwin20 (64-bit) running under: macOS Monterey 12.3.
+###### Raw data for this study has been deposited to ArrayExpress under accessions E-MTAB-16933 (RNAseq), E-MTAB-16944 (ChIPseq) and ENA under accessions PRJEB112294 (single micronucleus sequencing) and PRJEB111610 (nanopore).
 
 
 
