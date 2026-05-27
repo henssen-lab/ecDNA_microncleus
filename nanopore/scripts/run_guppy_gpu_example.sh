@@ -1,0 +1,1 @@
+guppy_basecaller -i ./CHP212_24h_HU/fast5 -s ./CHP212_24h_HU/fastq -c dna_r9.4.1_450bps_hac.cfg --compress_fastq --num_callers 16 --gpu_runners_per_device 8 --chunks_per_runner 1024 --chunk_size 3000 -x "cuda:0" 
