@@ -18,8 +18,9 @@ sample_inputcontrols = {
   "A4714_10_DM_UT_INPUT_S1_L001": ["A4714_10_DM_UT_INPUT_S1_L001"]
 }
 
-OUT = "/data/cephfs-1/work/projects/ecdna-chrom/scratch/Brueckner_et_al_ChIP/out"
-LOG ="/data/cephfs-1/work/projects/ecdna-chrom/scratch/Brueckner_et_al_ChIP/log"
+INPUT_DIR =""
+OUT = ""
+LOG = ""
 
 rule all:
   input:
@@ -45,7 +46,7 @@ rule trim:
     mem='64G',
     time='32:00:00',
   input:
-    read1='/data/cephfs-1/work/projects/ecdna-chrom/ChIPs/mn_ecdna/A4714/241219_LH00253_0187_A22VLGLLT3/{sample}_R1_001.fastq.gz'
+    read1=INPUT_DIR + '/{sample}_R1_001.fastq.gz'
   params:
     out_dir=OUT + '/{sample}/'
   output:
@@ -76,7 +77,7 @@ rule bwa:
     fastq=OUT + '/{sample}/{sample}_R1_001_trimmed.fq.gz'
   params:
     group='"@RG\\tID:Histone_ChIP_ecDNA_MN\\tPL:ILLUMINA\\tLB:{sample}\\tSM:{sample}"',
-    genome="/data/cephfs-1/work/groups/henssen/users/xuro_c/ChIP/reference/GRCh38_canonical_EBV/GRCh38.primary_assembly.canonical.EBV.fa"
+    genome="./ref/GRCh38.primary_assembly.canonical.EBV.fa"
   output:
     sam=temp(OUT + '/{sample}/canonical_hg38/{sample}.sam')
   resources:
@@ -201,7 +202,7 @@ rule bigWig:
   output:
     OUT +"/{sample}/canonical_hg38/{sample}_sorted_filtered_mkdup_final_10bp_10Mb.bw"
   params:
-    blacklist = "/data/cephfs-1/work/groups/henssen/users/xuro_c/ChIP/reference/blacklisted_regions_hg38.bed"
+    blacklist = "./reference/blacklisted_regions_hg38.bed"
   threads: 8
   resources:
     mem='32G',
