@@ -90,8 +90,14 @@ ggplot(data_forks_27ac, aes(x = combo, y = fork_speed, colour = combo, group = c
   geom_violin(trim = FALSE, alpha = 0.5) +
   stat_compare_means(comparisons = comparisons,
                      method = "t.test",
-                     var.equal = FALSE,      # Welch's t-test
+                     method.args = list(var.equal = FALSE),      # Welch's t-test
                      label = "p.signif") +
+
+#  stat_compare_means(comparisons = comparisons,
+#                    method = "t.test",
+#                    method.args = list(var.equal = FALSE),
+#                    label = "p.format") +
+
   theme_classic() +
   labs(
     x = NULL,
