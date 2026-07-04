@@ -95,7 +95,7 @@ ggplot(data_forks_27ac, aes(x = combo, y = fork_speed, colour = combo, group = c
   theme_classic() +
   labs(
     x = NULL,
-    y = "log2 (circular / linear DNA mean(CPM))",
+    y = "fork speed",
     colour = NULL
   ) +
   theme(legend.position = "none") +
@@ -207,3 +207,6 @@ ggplot(data.frame(perm_diff = perm_diff), aes(x = perm_diff)) +
 ggsave("./plots/subsampled_FC_permutation.eps", width = 1.4,
        height = 1.4, device= "eps", dpi=450)
 
+
+
+length(unique(read.csv("/Users/robinxu/Documents/Projects/stam_collab/RNA/smartseq3_run3/barcodes.txt", header = F)$V1))
