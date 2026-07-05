@@ -3,7 +3,8 @@ library(ComplexHeatmap)
 library(ggplot2)
 library(ggsignif)
 library(dplyr)
-library(circlize) 
+library(circlize)
+library(DescTools)
 ##script to plot figures
 
 #load data
@@ -255,7 +256,7 @@ CPM_ratio_df<- rbind(pMN_CPM_ratio_df,MN_CPM_ratio_df,PN_CPM_ratio_df)
 anno <- t.test(MN_CPM_ratio_df$CPM_ratio, PN_CPM_ratio_df$CPM_ratio, alternative = "two.sided", var.equal = FALSE)$p.value
 anno1 <- t.test(MN_CPM_ratio_df$CPM_ratio, pMN_CPM_ratio_df$CPM_ratio, alternative = "two.sided", var.equal = FALSE)$p.value
 anno2 <- t.test(pMN_CPM_ratio_df$CPM_ratio, PN_CPM_ratio_df$CPM_ratio, alternative = "two.sided", var.equal = FALSE)$p.value
-test_vec <- c(anno,anno1,anno)
+test_vec <- c(anno,anno1,anno2)
 
 #plotting
 CPM_ratio_df <- CPM_ratio_df %>%
