@@ -78,13 +78,16 @@ dev.off()
 
 
 ## select significant genes
-res_filtered <- subset(res, pvalue<.05)
-res_filtered <- subset(res_filtered, symbol != "NA")
-res_filtered <- subset(res_filtered, entrez != "NA")
+res_filtered_sign <- subset(res, pvalue<.05)
+res_filtered_sign <- subset(res_filtered_sign, symbol != "NA")
+res_filtered_sign <- subset(res_filtered_sign, entrez != "NA")
 
 
-write.table(res_filtered, "./tables/DE_HU_vs_UT_sign.txt", sep = "\t", quote = F)
+write.table(res_filtered_sign, "./tables/DE_HU_vs_UT_sign.txt", sep = "\t", quote = F)
 
+
+res_filtered <- subset(res, symbol != "NA")
+res_filtered <- subset(res, entrez != "NA")
 sign_genes_vec <-  (res_filtered$entrez)
 FC_vec <- res_filtered$log2FoldChange
 
