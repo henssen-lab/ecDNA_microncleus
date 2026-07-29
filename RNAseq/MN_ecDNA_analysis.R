@@ -85,14 +85,14 @@ res_filtered_sign <- subset(res_filtered_sign, entrez != "NA")
 
 write.table(res_filtered_sign, "./tables/DE_HU_vs_UT_sign.txt", sep = "\t", quote = F)
 
+res_filtered <- res
+res_filtered <- subset(res, !is.na(entrez))
+ranked <- as.data.frame(res_filtered)
+ranked <- ranked[order(-abs(ranked$log2FoldChange)), ]
+ranked <- ranked[!duplicated(ranked$entrez), ]
+gene_list <- sort(setNames(ranked$log2FoldChange, ranked$entrez), decreasing = TRUE)#rank
 
-res_filtered <- subset(res, symbol != "NA")
-res_filtered <- subset(res, entrez != "NA")
-sign_genes_vec <-  (res_filtered$entrez)
-FC_vec <- res_filtered$log2FoldChange
 
-names(FC_vec) <-sign_genes_vec
-gene_list = sort(FC_vec, decreasing = TRUE) #rank
 
 
 #geneset enrichment
@@ -101,8 +101,8 @@ gene_sets = msigdbr(category = "H") #load all Hallmark genesets
 
 map = gene_sets[, c("gs_name", "entrez_gene")] 
 map$entrez_gene = as.character(map$entrez_gene)
-
-geneset_enrichment_DM = GSEA(geneList = gene_list, TERM2GENE = map,nPermSimple = 10000)
+set.seed(42)
+geneset_enrichment_DM = GSEA(geneList = gene_list, TERM2GENE = map,nPermSimple = 10000,seed = T)
 GO <- gseGO(
   geneList = gene_list,
   ont = "BP",
